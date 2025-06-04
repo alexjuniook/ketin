@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KETIN - Assistente Online</title>
+    <script src="https://js.puter.com/v2/"></script>
+    <style>
+        body {
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 20px;
+        }
+
+        #terminal {
+            max-width: 800px;
+            margin: auto;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        #output {
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+
+        #input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background: #222;
+            border: none;
+            color: #0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="terminal">
+        <h2>🤖 KETIN Online (GPT-4o via puter.ai)</h2>
+        <div id="output">KETIN: Olá, humano! Em que posso ajudar?</div>
+        <input type="text" id="input" placeholder="Digite aqui e pressione Enter..." autofocus />
+    </div>
+
+    <script>
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+
+        input.addEventListener('keydown', async (e) => {
+            if (e.key === 'Enter' && input.value.trim() !== '') {
+                const userInput = input.value.trim();
+                output.innerHTML += `\n\nVocê: ${userInput}`;
+                input.value = '';
+
+                try {
+                    const response = await puter.ai.chat(userInput);
+                    output.innerHTML += `\nKETIN: ${response}`;
+                    output.scrollTop = output.scrollHeight;
+                } catch (error) {
+                    output.innerHTML += `\nKETIN: Ocorreu um erro ao contatar o GPT-4o.`;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
