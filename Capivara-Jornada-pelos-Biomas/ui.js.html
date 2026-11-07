@@ -1,0 +1,3 @@
+<script>
+const UI={hud(ctx,p,l){ctx.save();ctx.fillStyle='#10251ddd';ctx.fillRect(14,12,390,66);ctx.fillStyle='#fff';ctx.font='bold 17px system-ui';ctx.fillText(l.biome+' · '+l.title,28,37);ctx.font='14px system-ui';ctx.fillText('🍒 '+p.score+'     ♥ '+p.lives+'     Fase '+(l.index+1)+'/18',28,61);ctx.restore();},message(ctx,title,sub){ctx.save();ctx.fillStyle='#10251edb';ctx.fillRect(0,0,CONFIG.W,CONFIG.H);ctx.textAlign='center';ctx.fillStyle='#d4e9a3';ctx.font='bold 42px system-ui';ctx.fillText(title,CONFIG.W/2,CONFIG.H/2-8);ctx.fillStyle='white';ctx.font='18px system-ui';ctx.fillText(sub,CONFIG.W/2,CONFIG.H/2+32);ctx.restore();}};
+</script>
