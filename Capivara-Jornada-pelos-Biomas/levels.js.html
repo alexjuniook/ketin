@@ -1,0 +1,14 @@
+<script>
+const BIOMES=[
+ {name:'Mata Atlântica',levels:['Trilha da Floresta','Cachoeira Escondida','Guardião da Mata']},
+ {name:'Amazônia',levels:['Rios da Amazônia','Árvores Gigantes','Coração da Floresta']},
+ {name:'Cerrado',levels:['Campos Dourados','Veredas','Chapada Encantada']},
+ {name:'Caatinga',levels:['Sertão de Pedra','Oásis do Mandacaru','Sol do Sertão']},
+ {name:'Pantanal',levels:['Planície Alagada','Caminho das Garças','Reino das Águas']},
+ {name:'Pampa',levels:['Campos Sulinos','Vento dos Pampas','Horizonte Livre']}
+];
+function makeLevel(index){const biome=BIOMES[Math.floor(index/3)],sub=index%3,seed=index+1,width=2600+sub*250,plats=[new Platform(0,CONFIG.GROUND_Y,width,100)];let x=170;for(let i=0;i<12+sub*2;i++){const y=CONFIG.GROUND_Y-85-(i%3)*48;const w=110+(i%2)*35;plats.push(new Platform(x,y,w,18,i%4===0?'stone':'soil'));x+=175+(i%3)*22;}
+ const fruits=[];for(let i=0;i<22+sub*3;i++){const px=140+i*105;const py=(i%3===0?CONFIG.GROUND_Y-140:CONFIG.GROUND_Y-55-(i%2)*35);fruits.push(new Fruit(px,py));}
+ const enemies=[];for(let i=0;i<7+sub;i++){const ex=380+i*285;enemies.push(new Enemy(ex,CONFIG.GROUND_Y-27,ex-45,ex+125,i%3===0?'bird':'crab'));}
+ return {index,name:biome.name,title:biome.levels[sub],width,platforms:plats,fruits,enemies,start:{x:55,y:CONFIG.GROUND_Y-45},palette:BIOME_PALETTE[biome.name],biome:biome.name};}
+</script>
